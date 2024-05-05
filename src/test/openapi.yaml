@@ -1,0 +1,7 @@
+openapi: 3.1.0
+info:
+  title: Test API
+  version: 0.1.0
+paths:
+  /sub-folder:
+    $ref: ./sub-folder/openapi.yaml#/paths/~1sub-folder

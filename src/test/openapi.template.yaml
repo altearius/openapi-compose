@@ -1,0 +1,7 @@
+openapi: 3.1.0
+info:
+  title: Test API
+  version: 0.1.0
+
+paths:
+  $imports: ['**/openapi.yaml']

@@ -1,0 +1,11 @@
+openapi: 3.1.0
+info:
+  title: Test API (sub-folder)
+  version: 0.1.0
+
+paths:
+  /sub-folder:
+    get:
+      responses:
+        '200':
+          description: OK

@@ -1,0 +1,23 @@
+{
+  "author": "Chris Nielsen <nielsen.chris@gmail.com>",
+  "license": "MIT",
+  "name": "@altearius/openapi-compose",
+  "packageManager": "yarn@4.2.1",
+  "type": "module",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@types/node": "20.X.X",
+    "eslint": "^9.2.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.1.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.8.0"
+  },
+  "scripts": {
+    "build": "tsc --build ./tsconfig.json",
+    "clean": "node --eval \"fs.rmSync('dist', { recursive: true, force: true })\"",
+    "lint": "yarn build && eslint .",
+    "pretty": "prettier . --check"
+  }
+}

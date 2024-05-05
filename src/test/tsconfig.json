@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"outDir": "../../dist/test",
+		"rootDir": ".",
+		"types": ["node"]
+	},
+	"extends": "../../tsconfig.base.json",
+	"include": ["**/*.ts", "../openapi-compose/**/*.test.ts"]
+}

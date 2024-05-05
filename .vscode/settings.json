@@ -1,0 +1,70 @@
+{
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"[yaml]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"eslint.experimental.useFlatConfig": true,
+	"eslint.rules.customizations": [
+		{
+			"rule": "@typescript-eslint/no-unused-vars",
+			"severity": "off"
+		},
+		{
+			"rule": "@typescript-eslint/no-empty-interface",
+			"severity": "off"
+		},
+		{
+			"rule": "@typescript-eslint/no-empty-function",
+			"severity": "off"
+		},
+		{
+			"rule": "multiline-comment-style",
+			"severity": "off"
+		},
+		{
+			"rule": "@typescript-eslint/semi",
+			"severity": "off"
+		},
+		{
+			"rule": "require-yield",
+			"severity": "off"
+		},
+		{
+			"rule": "@typescript-eslint/no-extraneous-class",
+			"severity": "off"
+		},
+		{
+			"rule": "jest/expect-expect",
+			"severity": "off"
+		},
+		{
+			"rule": "no-empty",
+			"severity": "off"
+		},
+		{
+			"rule": "max-lines-per-function",
+			"severity": "off"
+		}
+	],
+	"files.associations": {
+		"yarn.lock": "yaml"
+	},
+	"files.readonlyInclude": {
+		"**/dist/**": true,
+		"**/node_modules/**": true
+	},
+	"javascript.preferences.importModuleSpecifier": "project-relative",
+	"javascript.preferences.importModuleSpecifierEnding": "js",
+	"npm.packageManager": "yarn",
+	"prettier.prettierPath": "./node_modules/prettier",
+	"typescript.preferences.importModuleSpecifier": "project-relative",
+	"typescript.preferences.importModuleSpecifierEnding": "js",
+	"typescript.tsc.autoDetect": "off",
+	"typescript.tsdk": "node_modules/typescript/lib"
+}

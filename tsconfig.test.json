@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"baseUrl": "./src/test",
+		"outDir": "./dist/test",
+		"paths": {
+			"#sut/*": ["../openapi-compose/*"]
+		},
+		"rootDir": "./src",
+		"tsBuildInfoFile": "./dist/test/.tsbuildinfo"
+	},
+	"extends": "./tsconfig.base.json",
+	"exclude": [],
+	"include": ["./src/test/**/*.ts", "./src/openapi-compose/**/*.test.ts"],
+	"references": [
+		{
+			"path": "./tsconfig.lib.json"
+		}
+	]
+}

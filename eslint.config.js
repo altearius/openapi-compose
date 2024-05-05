@@ -5,8 +5,8 @@ import tseslint from 'typescript-eslint';
 
 const tsProjects = [
 	'./tsconfig.json',
-	'./src/openapi-compose/tsconfig.json',
-	'./src/test/tsconfig.json'
+	'./tsconfig.lib.json',
+	'./tsconfig.test.json'
 ];
 
 /**

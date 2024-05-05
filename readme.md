@@ -58,3 +58,4 @@ The following developer scripts are provided:
 - `clean`: Remove build artifacts.
 - `lint`: Run ESLint.
 - `pretty`: Check formatting using prettier.
+- `test`: Run tests.

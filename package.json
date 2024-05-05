@@ -1,32 +1,37 @@
 {
   "author": "Chris Nielsen <nielsen.chris@gmail.com>",
   "bin": "./dist/openapi-compose/openapi-compose.js",
-  "license": "MIT",
-  "name": "@altearius/openapi-compose",
-  "packageManager": "yarn@4.2.1",
-  "type": "module",
-  "version": "1.0.0",
+  "dependencies": {
+    "commander": "^12.0.0",
+    "js-yaml": "^4.1.0",
+    "tslib": "^2.6.2"
+  },
   "devDependencies": {
     "@types/js-yaml": "^4",
     "@types/node": "20.X.X",
     "eslint": "^9.2.0",
     "eslint-config-prettier": "^9.1.0",
+    "esmock": "^2.6.5",
     "globals": "^15.1.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.8.0"
   },
+  "imports": {
+    "#sut/*": "./dist/openapi-compose/*"
+  },
+  "license": "MIT",
+  "name": "@altearius/openapi-compose",
+  "packageManager": "yarn@4.2.1",
   "scripts": {
     "build": "tsc --build ./tsconfig.json && yarn build-post-tsc",
     "build-post-tsc": "node --eval \"fs.chmodSync('dist/openapi-compose/openapi-compose.js', 0o755)\"",
     "clean": "node --eval \"fs.rmSync('dist', { recursive: true, force: true })\"",
     "dev": "yarn build && node --enable-source-maps ./dist/openapi-compose/openapi-compose.js",
     "lint": "yarn build && eslint .",
-    "pretty": "prettier . --check"
+    "pretty": "prettier . --check",
+    "test": "yarn build && node --test ./dist/test"
   },
-  "dependencies": {
-    "commander": "^12.0.0",
-    "js-yaml": "^4.1.0",
-    "tslib": "^2.6.2"
-  }
+  "type": "module",
+  "version": "1.0.0"
 }

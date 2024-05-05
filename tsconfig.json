@@ -1,12 +1,9 @@
 {
 	"extends": "./tsconfig.base.json",
-	"compilerOptions": {
-		"noEmit": true,
-		"allowJs": true,
-		"types": ["node"]
-	},
-	"exclude": ["src", "test", "node_modules"],
-	"files": [],
+	"exclude": ["src", "node_modules", "dist"],
 	"include": [],
-	"references": [{ "path": "src/openapi-compose" }, { "path": "src/test" }]
+	"references": [
+		{ "path": "./tsconfig.lib.json" },
+		{ "path": "./tsconfig.test.json" }
+	]
 }

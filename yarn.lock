@@ -14,6 +14,7 @@ __metadata:
     commander: "npm:^12.0.0"
     eslint: "npm:^9.2.0"
     eslint-config-prettier: "npm:^9.1.0"
+    esmock: "npm:^2.6.5"
     globals: "npm:^15.1.0"
     js-yaml: "npm:^4.1.0"
     prettier: "npm:^3.2.5"
@@ -543,6 +544,13 @@ __metadata:
   bin:
     eslint: bin/eslint.js
   checksum: 10c0/eab3265100a359a486e40e1d9d4d3ecff936d2f4d952f4ab107d404e0684fffbe186ecd0fb41791af5bcb13570a27032ddf9a2e628927ed33473f64255b0037b
+  languageName: node
+  linkType: hard
+
+"esmock@npm:^2.6.5":
+  version: 2.6.5
+  resolution: "esmock@npm:2.6.5"
+  checksum: 10c0/d574db3f7ebee029ba3545450cac2f65600b538a965c4972c09d1bd92cd101c9b1510bbc40453687a4b5d63d28d1d4cea083f29d8165bb6df10b401974537a25
   languageName: node
   linkType: hard
 

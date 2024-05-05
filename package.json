@@ -30,7 +30,7 @@
     "dev": "yarn build && node --enable-source-maps ./dist/openapi-compose/openapi-compose.js",
     "lint": "yarn build && eslint .",
     "pretty": "prettier . --check",
-    "test": "yarn build && node --test ./dist/test"
+    "test": "yarn build && node --test --enable-source-maps --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout \"./dist/test/**/*.test.js\""
   },
   "type": "module",
   "version": "1.0.0"

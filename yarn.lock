@@ -15,6 +15,7 @@ __metadata:
     eslint: "npm:^9.2.0"
     eslint-config-prettier: "npm:^9.1.0"
     esmock: "npm:^2.6.5"
+    fast-glob: "npm:^3.3.2"
     globals: "npm:^15.1.0"
     js-yaml: "npm:^4.1.0"
     prettier: "npm:^3.2.5"
@@ -604,7 +605,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.2.9":
+"fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.2":
   version: 3.3.2
   resolution: "fast-glob@npm:3.3.2"
   dependencies:

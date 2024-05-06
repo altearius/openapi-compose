@@ -41,11 +41,11 @@ await describe('Log', async () => {
 		sut.error(yamlException);
 
 		// Assert
-		assert.strictEqual(mockHumanPath.mock.calls.length, 1);
-		assert.strictEqual(mockError.mock.calls.length, 1);
-		assert.strictEqual(mockDebug.mock.calls.length, 0);
-		assert.strictEqual(mockWarn.mock.calls.length, 0);
-		assert.strictEqual(mockInfo.mock.calls.length, 0);
+		assert.strictEqual(mockHumanPath.mock.callCount(), 1);
+		assert.strictEqual(mockError.mock.callCount(), 1);
+		assert.strictEqual(mockDebug.mock.callCount(), 0);
+		assert.strictEqual(mockWarn.mock.callCount(), 0);
+		assert.strictEqual(mockInfo.mock.callCount(), 0);
 	});
 
 	await it('emits debug messages when verbose is enabled', () => {
@@ -57,11 +57,11 @@ await describe('Log', async () => {
 		sut.debug('Debug message');
 
 		// Assert
-		assert.strictEqual(mockHumanPath.mock.calls.length, 0);
-		assert.strictEqual(mockError.mock.calls.length, 0);
-		assert.strictEqual(mockDebug.mock.calls.length, 1);
-		assert.strictEqual(mockWarn.mock.calls.length, 0);
-		assert.strictEqual(mockInfo.mock.calls.length, 0);
+		assert.strictEqual(mockHumanPath.mock.callCount(), 0);
+		assert.strictEqual(mockError.mock.callCount(), 0);
+		assert.strictEqual(mockDebug.mock.callCount(), 1);
+		assert.strictEqual(mockWarn.mock.callCount(), 0);
+		assert.strictEqual(mockInfo.mock.callCount(), 0);
 	});
 
 	await it('suppresses debug messages when verbose is disabled', () => {
@@ -72,11 +72,11 @@ await describe('Log', async () => {
 		sut.debug('Debug message');
 
 		// Assert
-		assert.strictEqual(mockHumanPath.mock.calls.length, 0);
-		assert.strictEqual(mockError.mock.calls.length, 0);
-		assert.strictEqual(mockDebug.mock.calls.length, 0);
-		assert.strictEqual(mockWarn.mock.calls.length, 0);
-		assert.strictEqual(mockInfo.mock.calls.length, 0);
+		assert.strictEqual(mockHumanPath.mock.callCount(), 0);
+		assert.strictEqual(mockError.mock.callCount(), 0);
+		assert.strictEqual(mockDebug.mock.callCount(), 0);
+		assert.strictEqual(mockWarn.mock.callCount(), 0);
+		assert.strictEqual(mockInfo.mock.callCount(), 0);
 	});
 
 	await it('sends info messages to console.info', () => {
@@ -87,11 +87,11 @@ await describe('Log', async () => {
 		sut.info('Info message');
 
 		// Assert
-		assert.strictEqual(mockHumanPath.mock.calls.length, 0);
-		assert.strictEqual(mockError.mock.calls.length, 0);
-		assert.strictEqual(mockDebug.mock.calls.length, 0);
-		assert.strictEqual(mockWarn.mock.calls.length, 0);
-		assert.strictEqual(mockInfo.mock.calls.length, 1);
+		assert.strictEqual(mockHumanPath.mock.callCount(), 0);
+		assert.strictEqual(mockError.mock.callCount(), 0);
+		assert.strictEqual(mockDebug.mock.callCount(), 0);
+		assert.strictEqual(mockWarn.mock.callCount(), 0);
+		assert.strictEqual(mockInfo.mock.callCount(), 1);
 	});
 
 	await it('sends warning messages to console.warn', () => {
@@ -102,10 +102,10 @@ await describe('Log', async () => {
 		sut.warn('Warning message');
 
 		// Assert
-		assert.strictEqual(mockHumanPath.mock.calls.length, 0);
-		assert.strictEqual(mockError.mock.calls.length, 0);
-		assert.strictEqual(mockDebug.mock.calls.length, 0);
-		assert.strictEqual(mockWarn.mock.calls.length, 1);
-		assert.strictEqual(mockInfo.mock.calls.length, 0);
+		assert.strictEqual(mockHumanPath.mock.callCount(), 0);
+		assert.strictEqual(mockError.mock.callCount(), 0);
+		assert.strictEqual(mockDebug.mock.callCount(), 0);
+		assert.strictEqual(mockWarn.mock.callCount(), 1);
+		assert.strictEqual(mockInfo.mock.callCount(), 0);
 	});
 });

@@ -27,9 +27,9 @@ await describe('CompileRoot', async () => {
 		await sut(templatePath, targetPath);
 
 		// Assert
-		assert.strictEqual(mockProcessTemplate.mock.calls.length, 1);
-		assert.strictEqual(mockWriteFile.mock.calls.length, 1);
-		assert.strictEqual(mockYaml.mock.calls.length, 1);
+		assert.strictEqual(mockProcessTemplate.mock.callCount(), 1);
+		assert.strictEqual(mockWriteFile.mock.callCount(), 1);
+		assert.strictEqual(mockYaml.mock.callCount(), 1);
 	});
 
 	await it('does not write if there is nothing to write', async () => {
@@ -41,7 +41,7 @@ await describe('CompileRoot', async () => {
 		await sut(templatePath, targetPath);
 
 		// Assert
-		assert.strictEqual(mockProcessTemplate.mock.calls.length, 1);
-		assert.strictEqual(mockWriteFile.mock.calls.length, 0);
+		assert.strictEqual(mockProcessTemplate.mock.callCount(), 1);
+		assert.strictEqual(mockWriteFile.mock.callCount(), 0);
 	});
 });

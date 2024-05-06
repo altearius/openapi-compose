@@ -1,7 +1,7 @@
 import Log from '#sut/lib/Log.js';
 import { strict as esmock } from 'esmock';
 import type fg from 'fast-glob';
-import assert from 'node:assert';
+import assert from 'node:assert/strict';
 import { beforeEach, describe, it, mock } from 'node:test';
 import type FindFiles from './FindFiles.js';
 import type ReadWildcards from './ReadWildcards.js';
@@ -37,9 +37,9 @@ await describe('FindFiles', async () => {
 		const result = await sut(template, templatePath, targetPath);
 
 		// Assert
-		assert.strictEqual(mockReadWildcards.mock.calls.length, 1);
-		assert.strictEqual(mockWarn.mock.calls.length, 1);
-		assert.strictEqual(mockFg.mock.calls.length, 0);
+		assert.strictEqual(mockReadWildcards.mock.callCount(), 1);
+		assert.strictEqual(mockWarn.mock.callCount(), 1);
+		assert.strictEqual(mockFg.mock.callCount(), 0);
 		assert.strictEqual(result.length, 0);
 	});
 
@@ -55,9 +55,9 @@ await describe('FindFiles', async () => {
 		const result = await sut(template, templatePath, targetPath);
 
 		// Assert
-		assert.strictEqual(mockReadWildcards.mock.calls.length, 1);
-		assert.strictEqual(mockWarn.mock.calls.length, 0);
-		assert.strictEqual(mockFg.mock.calls.length, 1);
+		assert.strictEqual(mockReadWildcards.mock.callCount(), 1);
+		assert.strictEqual(mockWarn.mock.callCount(), 0);
+		assert.strictEqual(mockFg.mock.callCount(), 1);
 		assert.deepStrictEqual(mockFg.mock.calls[0]?.arguments?.[0], [wildcards]);
 		assert.deepStrictEqual(result, ['result']);
 	});

@@ -64,7 +64,7 @@ await describe('ProcessFiles', async () => {
 
 		// Justification: Meaning is obvious.
 		// eslint-disable-next-line @typescript-eslint/no-magic-numbers
-		assert.strictEqual(mockDebug.mock.calls.length, 2);
+		assert.strictEqual(mockDebug.mock.callCount(), 2);
 
 		assert.deepStrictEqual(
 			mockReadFile.mock.calls.map((x) => x.arguments),
@@ -90,6 +90,6 @@ await describe('ProcessFiles', async () => {
 
 		// Assert
 		assert.strictEqual(result.length, 0);
-		assert.strictEqual(mockWarn.mock.calls.length, 1);
+		assert.strictEqual(mockWarn.mock.callCount(), 1);
 	});
 });

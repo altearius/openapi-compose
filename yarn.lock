@@ -22,7 +22,7 @@ __metadata:
     typescript: "npm:^5.4.5"
     typescript-eslint: "npm:^7.8.0"
   bin:
-    openapi-compose: ./dist/openapi-compose/openapi-compose.js
+    openapi-compose: ./dist/openapi-compose/cli/openapi-compose.js
   languageName: unknown
   linkType: soft
 

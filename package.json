@@ -1,11 +1,12 @@
 {
   "author": "Chris Nielsen <nielsen.chris@gmail.com>",
-  "bin": "./dist/openapi-compose/openapi-compose.js",
+  "bin": "./dist/openapi-compose/cli/openapi-compose.js",
   "dependencies": {
     "commander": "^12.0.0",
     "js-yaml": "^4.1.0",
     "tslib": "^2.6.2"
   },
+  "description": "A tool for composing a root-level OpenAPI specification by merging multiple OpenAPI specifications together.",
   "devDependencies": {
     "@types/js-yaml": "^4",
     "@types/node": "20.X.X",
@@ -22,6 +23,7 @@
     "#test/*": "./dist/test/test/*"
   },
   "license": "MIT",
+  "main": "./dist/openapi-compose/api/Compose.js",
   "name": "@altearius/openapi-compose",
   "packageManager": "yarn@4.2.1",
   "scripts": {

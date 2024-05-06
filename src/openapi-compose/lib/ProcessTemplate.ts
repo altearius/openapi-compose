@@ -7,7 +7,7 @@ import ReadTemplate from './ReadTemplate.js';
 export default async function ProcessTemplate(
 	templatePath: string,
 	targetPath: string,
-	log: ILog
+	log: ILog = console
 ) {
 	const template = await ReadTemplate(templatePath, log);
 	if (!template) {

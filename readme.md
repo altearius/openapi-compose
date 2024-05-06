@@ -54,6 +54,32 @@ Imports that themselves use `$ref` to reference other files are supported. The
 resulting `$ref` will be updated to point to the correct location in the
 generated file.
 
+### API
+
+An API is also provided:
+
+```ts
+import { Compose, ComposeAndWrite } from '@altearius/openapi-compose';
+
+// Compose processes the template file and returns the composed OpenAPI object
+// without writing it to disk. You have to give it the path to the template
+// to read and a path to the final file to write (used to render paths as
+// relative to the final template). You may optionally provide a logging
+// function as the final paramter (`console` will be used if omitted).
+const composed = await Compose(
+  './api/openapi.template.yaml',
+  './api/openapi.yaml',
+  console // (optional)
+);
+
+// At this point, you must "do something" with the final result, probably
+// transform it some more or write it to the file system.
+//
+// Alternatively, you can use the `ComposeAndWrite` function go ahead and
+// render the final result to the disk as a YAML document.
+await ComposeAndWrite('./api/openapi.template.yaml', './api/openapi.yaml');
+```
+
 ## Contributing
 
 The following developer scripts are provided:

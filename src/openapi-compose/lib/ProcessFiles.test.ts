@@ -1,8 +1,8 @@
 import type HasPaths from '#sut/lib/HasPaths.js';
 import type HumanPath from '#sut/lib/HumanPath.js';
-import Log from '#sut/lib/Log.js';
 import type ProcessFiles from '#sut/lib/ProcessFiles.js';
 import type ProcessPaths from '#sut/lib/ProcessPaths.js';
+import TestLog from '#test/TestLog.js';
 import { strict as esmock } from 'esmock';
 import yaml from 'js-yaml';
 import assert from 'node:assert/strict';
@@ -10,12 +10,12 @@ import type { readFile } from 'node:fs/promises';
 import { beforeEach, describe, it, mock } from 'node:test';
 
 await describe('ProcessFiles', async () => {
-	const mockDebug = mock.method(Log, 'debug');
+	const mockDebug = mock.method(TestLog, 'debug');
 	const mockHasPaths = mock.fn<typeof HasPaths>();
 	const mockHumanPath = mock.fn<typeof HumanPath>();
 	const mockProcessPaths = mock.fn<typeof ProcessPaths>();
 	const mockReadFile = mock.fn<typeof readFile>();
-	const mockWarn = mock.method(Log, 'warn');
+	const mockWarn = mock.method(TestLog, 'warn');
 	const mockYamlLoad = mock.method(yaml, 'load');
 
 	beforeEach(() => {
@@ -55,7 +55,7 @@ await describe('ProcessFiles', async () => {
 
 		// Act
 		const result = [];
-		for await (const [apiPath, refPath] of sut(files, targetDir)) {
+		for await (const [apiPath, refPath] of sut(files, targetDir, TestLog)) {
 			result.push([apiPath, refPath]);
 		}
 
@@ -84,7 +84,7 @@ await describe('ProcessFiles', async () => {
 
 		// Act
 		const result = [];
-		for await (const [apiPath, refPath] of sut([''], '')) {
+		for await (const [apiPath, refPath] of sut([''], '', TestLog)) {
 			result.push([apiPath, refPath]);
 		}
 

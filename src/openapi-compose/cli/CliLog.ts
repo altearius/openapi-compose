@@ -1,6 +1,6 @@
 import { YAMLException } from 'js-yaml';
 import { styleText } from 'node:util';
-import HumanPath from './HumanPath.js';
+import HumanPath from '../lib/HumanPath.js';
 
 function error(yamlException: YAMLException): void;
 function error(...messages: unknown[]): void;
@@ -19,9 +19,9 @@ function error(...messages: unknown[]) {
 	console.error(styleText('redBright', '✖'), ...messages);
 }
 
-const Log = {
+const CliLog = {
 	debug: (...messages: unknown[]) => {
-		if (Log.verbose) {
+		if (CliLog.verbose) {
 			console.debug(styleText('gray', '⚙'), ...messages);
 		}
 	},
@@ -35,4 +35,4 @@ const Log = {
 	}
 };
 
-export default Log;
+export default CliLog;

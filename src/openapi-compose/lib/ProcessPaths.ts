@@ -1,21 +1,22 @@
 import { relative } from 'node:path';
 import HumanPath from './HumanPath.js';
-import Log from './Log.js';
+import type ILog from './ILog.js';
 import ResolveRefObject from './ResolveRefObject.js';
 
 export default function* ProcessPaths(
 	file: string,
 	paths: Record<string, unknown>,
-	targetDir: string
+	targetDir: string,
+	log: ILog
 ): Generator<[string, string]> {
 	for (const [path, pathObject] of Object.entries(paths)) {
 		if (typeof pathObject !== 'object' || pathObject === null) {
-			Log.warn('Invalid path object in', HumanPath(file));
+			log.warn('Invalid path object in', HumanPath(file));
 			continue;
 		}
 
 		if ('$ref' in pathObject) {
-			const refPath = ResolveRefObject(file, path, targetDir, pathObject);
+			const refPath = ResolveRefObject(file, path, targetDir, pathObject, log);
 			if (refPath) {
 				yield [path, refPath];
 			}
@@ -25,7 +26,7 @@ export default function* ProcessPaths(
 
 		const relRefPath = relative(targetDir, file);
 		if (relRefPath.startsWith('..')) {
-			Log.warn(HumanPath(file), 'is outside the target directory');
+			log.warn(HumanPath(file), 'is outside the target directory');
 			continue;
 		}
 

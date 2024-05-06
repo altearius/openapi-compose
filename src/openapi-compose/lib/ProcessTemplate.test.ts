@@ -5,6 +5,7 @@ import type ReadTemplate from '#sut/lib/ReadTemplate.js';
 import esmock from 'esmock';
 import assert from 'node:assert/strict';
 import { beforeEach, describe, it, mock } from 'node:test';
+import TestLog from '../../test/TestLog.js';
 
 await describe('ProcessTemplate', async () => {
 	const mockReadTemplate = mock.fn<typeof ReadTemplate>();
@@ -31,7 +32,7 @@ await describe('ProcessTemplate', async () => {
 		mockReadTemplate.mock.mockImplementationOnce(async () => Promise.resolve());
 
 		// Act
-		await sut('template.yaml', 'target.yaml');
+		await sut('template.yaml', 'target.yaml', TestLog);
 
 		// Assert
 		assert.strictEqual(mockReadTemplate.mock.callCount(), 1);
@@ -60,7 +61,11 @@ await describe('ProcessTemplate', async () => {
 		});
 
 		// Act
-		const result = await sut('/path/to/template.yaml', '/path/to/target.yaml');
+		const result = await sut(
+			'/path/to/template.yaml',
+			'/path/to/target.yaml',
+			TestLog
+		);
 
 		// Assert
 		assert.strictEqual(mockReadTemplate.mock.callCount(), 1);

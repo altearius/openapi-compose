@@ -2,9 +2,9 @@
 
 import { Argument, Command } from 'commander';
 import { YAMLException } from 'js-yaml';
-import CompileRoot from './lib/CompileRoot.js';
-import Log from './lib/Log.js';
-import ResolvePaths from './lib/ResolvePaths.js';
+import CompileRoot from '../lib/CompileRoot.js';
+import ResolvePaths from '../lib/ResolvePaths.js';
+import Log from './CliLog.js';
 
 const program = new Command('openapi-compose');
 program.description('OpenAPI Composition');

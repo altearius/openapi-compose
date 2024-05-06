@@ -3,7 +3,8 @@
 		"baseUrl": "./src/test",
 		"outDir": "./dist/test",
 		"paths": {
-			"#sut/*": ["../openapi-compose/*"]
+			"#sut/*": ["../openapi-compose/*"],
+			"#test/*": ["./*"]
 		},
 		"rootDir": "./src",
 		"tsBuildInfoFile": "./dist/test/.tsbuildinfo"

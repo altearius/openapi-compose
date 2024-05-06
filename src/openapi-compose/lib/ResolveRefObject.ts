@@ -1,17 +1,18 @@
 import { basename, dirname, relative, resolve } from 'node:path';
 import HumanPath from './HumanPath.js';
-import Log from './Log.js';
+import type ILog from './ILog.js';
 
 export default function ResolveRefObject(
-	fsPath: string,
+	filePath: string,
 	apiPath: string,
 	targetDirPath: string,
-	pathObject: { $ref: unknown }
+	pathObject: { $ref: unknown },
+	log: ILog
 ) {
 	const { $ref: refPath } = pathObject;
 
 	if (typeof refPath !== 'string') {
-		Log.warn('Invalid $ref in', HumanPath(fsPath), 'at', apiPath);
+		log.warn('Invalid $ref in', HumanPath(filePath), 'at', apiPath);
 		return;
 	}
 
@@ -20,23 +21,23 @@ export default function ResolveRefObject(
 	// always a simple relative path.
 	const hashIdx = refPath.indexOf('#');
 	if (hashIdx !== -1) {
-		const x = refPath.slice(0, hashIdx) || basename(fsPath);
+		const x = refPath.slice(0, hashIdx) || basename(filePath);
 		const y = refPath.slice(hashIdx + 1);
-		const absRefPath = resolve(dirname(fsPath), x);
+		const absRefPath = resolve(dirname(filePath), x);
 		const relRefPath = relative(targetDirPath, absRefPath);
 		if (relRefPath.startsWith('..')) {
-			Log.warn(HumanPath(absRefPath), 'is outside the target directory');
+			log.warn(HumanPath(absRefPath), 'is outside the target directory');
 			return;
 		}
 
 		return `./${relRefPath}#${y}`;
 	}
 
-	const absRefPath = resolve(dirname(fsPath), refPath);
+	const absRefPath = resolve(dirname(filePath), refPath);
 	const relRefPath = relative(targetDirPath, absRefPath);
 
 	if (relRefPath.startsWith('..')) {
-		Log.warn(HumanPath(absRefPath), 'is outside the target directory');
+		log.warn(HumanPath(absRefPath), 'is outside the target directory');
 		return;
 	}
 

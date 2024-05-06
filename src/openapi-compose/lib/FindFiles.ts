@@ -2,17 +2,18 @@ import fg from 'fast-glob';
 import { dirname } from 'node:path';
 import HumanPath from './HumanPath.js';
 import type IHasPaths from './IHasPaths.js';
-import Log from './Log.js';
+import type ILog from './ILog.js';
 import ReadWildcards from './ReadWildcards.js';
 
 export default async function FindFiles(
 	template: IHasPaths,
 	templatePath: string,
-	targetPath: string
+	targetPath: string,
+	log: ILog
 ) {
 	const wildcards = ReadWildcards(template);
 	if (!wildcards.length) {
-		Log.warn('No $imports found in', HumanPath(templatePath));
+		log.warn('No $imports found in', HumanPath(templatePath));
 		return [];
 	}
 
@@ -23,7 +24,7 @@ export default async function FindFiles(
 		ignore: [targetPath]
 	});
 
-	Log.debug('Found', files.length, 'files:', files);
+	log.debug('Found', files.length, 'files:', files);
 
 	return files;
 }

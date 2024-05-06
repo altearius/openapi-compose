@@ -1,7 +1,7 @@
 import type HasPaths from '#sut/lib/HasPaths.js';
 import type HumanPath from '#sut/lib/HumanPath.js';
-import Log from '#sut/lib/Log.js';
 import type ReadTemplate from '#sut/lib/ReadTemplate.js';
+import TestLog from '#test/TestLog.js';
 import esmock from 'esmock';
 import yaml from 'js-yaml';
 import assert from 'node:assert/strict';
@@ -11,7 +11,7 @@ import { beforeEach, describe, it, mock } from 'node:test';
 await describe('ReadTemplate', async () => {
 	const mockHasPaths = mock.fn<typeof HasPaths>();
 	const mockHumanPath = mock.fn<typeof HumanPath>();
-	const mockLogWarn = mock.method(Log, 'warn');
+	const mockLogWarn = mock.method(TestLog, 'warn');
 	const mockReadFile = mock.method(fs, 'readFile');
 	const mockYamlLoad = mock.method(yaml, 'load');
 
@@ -37,7 +37,7 @@ await describe('ReadTemplate', async () => {
 		mockHasPaths.mock.mockImplementationOnce(() => true);
 
 		// Act
-		const result = await sut('/path/to/template.yaml');
+		const result = await sut('/path/to/template.yaml', TestLog);
 
 		// Assert
 		assert.strictEqual(mockReadFile.mock.callCount(), 1);
@@ -56,7 +56,7 @@ await describe('ReadTemplate', async () => {
 		mockLogWarn.mock.mockImplementationOnce(() => {});
 
 		// Act
-		const result = await sut('/path/to/template.yaml');
+		const result = await sut('/path/to/template.yaml', TestLog);
 
 		// Assert
 		assert.strictEqual(mockReadFile.mock.callCount(), 1);

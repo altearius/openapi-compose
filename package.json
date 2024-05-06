@@ -18,16 +18,17 @@
     "typescript-eslint": "^7.8.0"
   },
   "imports": {
-    "#sut/*": "./dist/openapi-compose/*"
+    "#sut/*": "./dist/openapi-compose/*",
+    "#test/*": "./dist/test/test/*"
   },
   "license": "MIT",
   "name": "@altearius/openapi-compose",
   "packageManager": "yarn@4.2.1",
   "scripts": {
     "build": "tsc --build ./tsconfig.json && yarn build-post-tsc",
-    "build-post-tsc": "node --eval \"fs.chmodSync('dist/openapi-compose/openapi-compose.js', 0o755)\"",
+    "build-post-tsc": "node --eval \"fs.chmodSync('dist/openapi-compose/cli/openapi-compose.js', 0o755)\"",
     "clean": "node --eval \"fs.rmSync('dist', { recursive: true, force: true })\"",
-    "dev": "yarn build && node --enable-source-maps ./dist/openapi-compose/openapi-compose.js",
+    "dev": "yarn build && node --enable-source-maps ./dist/openapi-compose/cli/openapi-compose.js",
     "lint": "yarn build && eslint .",
     "pretty": "prettier . --check",
     "test": "yarn build && node --test --enable-source-maps --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout \"./dist/test/**/*.test.js\""

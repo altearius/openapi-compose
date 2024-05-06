@@ -1,14 +1,14 @@
 import type HumanPath from '#sut/lib/HumanPath.js';
-import Log from '#sut/lib/Log.js';
 import type ProcessPaths from '#sut/lib/ProcessPaths.js';
 import type ResolveRefObject from '#sut/lib/ResolveRefObject.js';
+import TestLog from '#test/TestLog.js';
 import esmock from 'esmock';
 import assert from 'node:assert/strict';
 import { beforeEach, describe, it, mock } from 'node:test';
 
 await describe('ProcessPaths', async () => {
 	const mockHumanPath = mock.fn<typeof HumanPath>();
-	const mockWarn = mock.method(Log, 'warn');
+	const mockWarn = mock.method(TestLog, 'warn');
 	const mockResolveRefObject = mock.fn<typeof ResolveRefObject>();
 
 	beforeEach(() => {
@@ -31,7 +31,12 @@ await describe('ProcessPaths', async () => {
 
 		// Act
 		const result = [];
-		for await (const [apiPath, refPath] of sut(file, paths, targetDir)) {
+		for await (const [apiPath, refPath] of sut(
+			file,
+			paths,
+			targetDir,
+			TestLog
+		)) {
 			result.push([apiPath, refPath]);
 		}
 
@@ -49,7 +54,12 @@ await describe('ProcessPaths', async () => {
 
 		// Act
 		const result = [];
-		for await (const [apiPath, refPath] of sut(file, paths, targetDir)) {
+		for await (const [apiPath, refPath] of sut(
+			file,
+			paths,
+			targetDir,
+			TestLog
+		)) {
 			result.push([apiPath, refPath]);
 		}
 
@@ -67,7 +77,12 @@ await describe('ProcessPaths', async () => {
 
 		// Act
 		const result = [];
-		for await (const [apiPath, refPath] of sut(file, paths, targetDir)) {
+		for await (const [apiPath, refPath] of sut(
+			file,
+			paths,
+			targetDir,
+			TestLog
+		)) {
 			result.push([apiPath, refPath]);
 		}
 
@@ -84,7 +99,12 @@ await describe('ProcessPaths', async () => {
 
 		// Act
 		const result = [];
-		for await (const [apiPath, refPath] of sut(file, paths, targetDir)) {
+		for await (const [apiPath, refPath] of sut(
+			file,
+			paths,
+			targetDir,
+			TestLog
+		)) {
 			result.push([apiPath, refPath]);
 		}
 
@@ -101,7 +121,12 @@ await describe('ProcessPaths', async () => {
 
 		// Act
 		const result = [];
-		for await (const [apiPath, refPath] of sut(file, paths, targetDir)) {
+		for await (const [apiPath, refPath] of sut(
+			file,
+			paths,
+			targetDir,
+			TestLog
+		)) {
 			result.push([apiPath, refPath]);
 		}
 

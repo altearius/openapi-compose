@@ -1,13 +1,13 @@
 import type HumanPath from '#sut/lib/HumanPath.js';
-import Log from '#sut/lib/Log.js';
 import type ResolveRefObject from '#sut/lib/ResolveRefObject.js';
+import TestLog from '#test/TestLog.js';
 import esmock from 'esmock';
 import assert from 'node:assert/strict';
 import { beforeEach, describe, it, mock } from 'node:test';
 
 await describe('ResolveRefObject', async () => {
 	const mockHumanPath = mock.fn<typeof HumanPath>();
-	const mockWarn = mock.method(Log, 'warn');
+	const mockWarn = mock.method(TestLog, 'warn');
 
 	beforeEach(() => {
 		mockHumanPath.mock.resetCalls();
@@ -26,7 +26,7 @@ await describe('ResolveRefObject', async () => {
 		mockWarn.mock.mockImplementationOnce(() => {});
 
 		// Act
-		sut('/path/to/file', '/api/path', '/target/dir', { $ref: 42 });
+		sut('/path/to/file', '/api/path', '/target/dir', { $ref: 42 }, TestLog);
 
 		// Assert
 		assert.strictEqual(mockHumanPath.mock.callCount(), 1);
@@ -38,7 +38,8 @@ await describe('ResolveRefObject', async () => {
 			'/path/to/template/context/file1.yaml',
 			'/api/path',
 			'/path/to/template',
-			{ $ref: '../another/file2.yaml' }
+			{ $ref: '../another/file2.yaml' },
+			TestLog
 		);
 
 		// Assert
@@ -51,7 +52,8 @@ await describe('ResolveRefObject', async () => {
 			'/path/to/template/context/file1.yaml',
 			'/api/path',
 			'/path/to/template',
-			{ $ref: '#/any/where/is/fine' }
+			{ $ref: '#/any/where/is/fine' },
+			TestLog
 		);
 
 		// Assert
@@ -64,7 +66,8 @@ await describe('ResolveRefObject', async () => {
 			'/path/to/template/context/file1.yaml',
 			'/api/path',
 			'/path/to/template',
-			{ $ref: '../another/file2.yaml#/any/where/is/fine' }
+			{ $ref: '../another/file2.yaml#/any/where/is/fine' },
+			TestLog
 		);
 
 		// Assert
@@ -80,7 +83,8 @@ await describe('ResolveRefObject', async () => {
 			'/path/to/template/context/file1.yaml',
 			'/api/path',
 			'/path/to/template',
-			{ $ref: '../../../../another/file2.yaml#/any/where/is/fine' }
+			{ $ref: '../../../../another/file2.yaml#/any/where/is/fine' },
+			TestLog
 		);
 
 		// Assert
@@ -97,7 +101,8 @@ await describe('ResolveRefObject', async () => {
 			'/path/to/template/context/file1.yaml',
 			'/api/path',
 			'/path/to/template',
-			{ $ref: '../../../../another/file2.yaml' }
+			{ $ref: '../../../../another/file2.yaml' },
+			TestLog
 		);
 
 		// Assert

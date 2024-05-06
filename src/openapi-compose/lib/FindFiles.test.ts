@@ -1,4 +1,4 @@
-import Log from '#sut/lib/Log.js';
+import TestLog from '#test/TestLog.js';
 import { strict as esmock } from 'esmock';
 import type fg from 'fast-glob';
 import assert from 'node:assert/strict';
@@ -11,8 +11,8 @@ await describe('FindFiles', async () => {
 	const targetPath = './path/to/result.yaml';
 
 	const mockReadWildcards = mock.fn<typeof ReadWildcards>();
-	const mockWarn = mock.method(Log, 'warn');
-	const mockDebug = mock.method(Log, 'debug');
+	const mockWarn = mock.method(TestLog, 'warn');
+	const mockDebug = mock.method(TestLog, 'debug');
 	const mockFg = mock.fn<typeof fg>();
 
 	beforeEach(() => {
@@ -34,7 +34,7 @@ await describe('FindFiles', async () => {
 		mockWarn.mock.mockImplementationOnce(() => {});
 
 		// Act
-		const result = await sut(template, templatePath, targetPath);
+		const result = await sut(template, templatePath, targetPath, TestLog);
 
 		// Assert
 		assert.strictEqual(mockReadWildcards.mock.callCount(), 1);
@@ -52,7 +52,7 @@ await describe('FindFiles', async () => {
 		mockDebug.mock.mockImplementationOnce(() => {});
 
 		// Act
-		const result = await sut(template, templatePath, targetPath);
+		const result = await sut(template, templatePath, targetPath, TestLog);
 
 		// Assert
 		assert.strictEqual(mockReadWildcards.mock.callCount(), 1);

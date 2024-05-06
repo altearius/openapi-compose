@@ -1,11 +1,11 @@
+import type CliLog from '#sut/cli/CliLog.js';
 import type HumanPath from '#sut/lib/HumanPath.js';
-import type Log from '#sut/lib/Log.js';
 import { strict as esmock } from 'esmock';
 import { YAMLException } from 'js-yaml';
 import assert from 'node:assert/strict';
 import { beforeEach, describe, it, mock } from 'node:test';
 
-await describe('Log', async () => {
+await describe('CliLog', async () => {
 	const mockHumanPath = mock.fn<typeof HumanPath>();
 	const mockError = mock.method(console, 'error');
 	const mockDebug = mock.method(console, 'debug');
@@ -20,7 +20,7 @@ await describe('Log', async () => {
 		mockInfo.mock.resetCalls();
 	});
 
-	const sut = await esmock<typeof Log>('#sut/lib/Log.js', {
+	const sut = await esmock<typeof CliLog>('#sut/cli/CliLog.js', {
 		'#sut/lib/HumanPath.js': { default: mockHumanPath }
 	});
 

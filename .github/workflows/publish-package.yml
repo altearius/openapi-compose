@@ -16,15 +16,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Prepare Corepack
+        run: corepack enable
+
       - name: Setup node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: yarn
           cache-dependency-path: ./yarn.lock
-
-      - name: Prepare Yarn
-        run: corepack enable
 
       - name: Install dependencies
         run: yarn install --immutable

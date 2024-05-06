@@ -1,5 +1,5 @@
 import Log from '#sut/lib/Log.js';
-import esmock from 'esmock';
+import { strict as esmock } from 'esmock';
 import type fg from 'fast-glob';
 import assert from 'node:assert';
 import { beforeEach, describe, it, mock } from 'node:test';
@@ -12,11 +12,13 @@ await describe('FindFiles', async () => {
 
 	const mockReadWildcards = mock.fn<typeof ReadWildcards>();
 	const mockWarn = mock.method(Log, 'warn');
+	const mockDebug = mock.method(Log, 'debug');
 	const mockFg = mock.fn<typeof fg>();
 
 	beforeEach(() => {
 		mockReadWildcards.mock.resetCalls();
 		mockWarn.mock.resetCalls();
+		mockDebug.mock.resetCalls();
 		mockFg.mock.resetCalls();
 	});
 
@@ -39,5 +41,24 @@ await describe('FindFiles', async () => {
 		assert.strictEqual(mockWarn.mock.calls.length, 1);
 		assert.strictEqual(mockFg.mock.calls.length, 0);
 		assert.strictEqual(result.length, 0);
+	});
+
+	await it('processes any wildcards that it finds', async () => {
+		// Arrange
+		const wildcards = 'wildcards';
+		const template = { paths: { $imports: [wildcards] } };
+		mockReadWildcards.mock.mockImplementationOnce(() => [wildcards]);
+		mockFg.mock.mockImplementationOnce(() => ['result']);
+		mockDebug.mock.mockImplementationOnce(() => {});
+
+		// Act
+		const result = await sut(template, templatePath, targetPath);
+
+		// Assert
+		assert.strictEqual(mockReadWildcards.mock.calls.length, 1);
+		assert.strictEqual(mockWarn.mock.calls.length, 0);
+		assert.strictEqual(mockFg.mock.calls.length, 1);
+		assert.deepStrictEqual(mockFg.mock.calls[0]?.arguments?.[0], [wildcards]);
+		assert.deepStrictEqual(result, ['result']);
 	});
 });

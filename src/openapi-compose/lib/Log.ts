@@ -27,7 +27,7 @@ const Log = {
 	},
 	error,
 	info: (...messages: unknown[]) => {
-		console.log(styleText('blueBright', 'ℹ'), ...messages);
+		console.info(styleText('blueBright', 'ℹ'), ...messages);
 	},
 	verbose: false,
 	warn: (...messages: unknown[]) => {

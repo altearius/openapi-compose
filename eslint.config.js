@@ -75,7 +75,7 @@ const config = [
 	},
 	{
 		// Additional base-level rules for TypeScript files.
-		files: ['**/*.ts'],
+		files: ['src/**/*.ts'],
 
 		languageOptions: {
 			globals: { ...globals.node },
@@ -170,6 +170,17 @@ const config = [
 			'no-undef': 'off',
 			'no-useless-constructor': 'off',
 			'prefer-destructuring': 'off'
+		}
+	},
+	{
+		// Additional rules for test files.
+		files: ['src/**/*.test.ts'],
+		rules: {
+			// empty functions are useful mocks.
+			'@typescript-eslint/no-empty-function': 'off',
+
+			// Tests tend to run on for a while.
+			'max-lines-per-function': 'off'
 		}
 	}
 ];

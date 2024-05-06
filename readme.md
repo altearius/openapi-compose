@@ -15,7 +15,7 @@ The CLI command accepts a single argument: a path to a template file used to
 generate the root level OpenAPI specification.
 
 ```sh
-yarn @altearius/openapi-compose ./openapi.template.yaml
+yarn openapi-compose ./openapi.template.yaml
 ```
 
 The template file should can be any OpenAPI file, either JSON or YAML, but it

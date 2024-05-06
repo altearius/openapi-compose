@@ -22,10 +22,18 @@
     "#sut/*": "./dist/openapi-compose/*",
     "#test/*": "./dist/test/test/*"
   },
+  "keywords": [
+    "openapi",
+    "swagger"
+  ],
   "license": "MIT",
   "main": "./dist/openapi-compose/api/Compose.js",
   "name": "@altearius/openapi-compose",
   "packageManager": "yarn@4.2.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/altearius/openapi-compose"
+  },
   "scripts": {
     "build": "tsc --build ./tsconfig.json && yarn build-post-tsc",
     "build-post-tsc": "node --eval \"fs.chmodSync('dist/openapi-compose/cli/openapi-compose.js', 0o755)\"",

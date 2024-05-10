@@ -7,6 +7,16 @@ The goal is to provide a simple, single-purpose tool that lets developers
 more easily split a large OpenAPI specification into a series of smaller
 files while automatically maintaining the root-level document's references.
 
+## Requirements
+
+- Node.js >= v20.12.0
+
+## Installation
+
+```sh
+yarn add --dev @altearius/openapi-compose
+```
+
 ## Usage
 
 This package makes specific assumptions about how a project is structured.

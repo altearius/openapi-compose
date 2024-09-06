@@ -2,22 +2,22 @@
   "author": "Chris Nielsen <nielsen.chris@gmail.com>",
   "bin": "./dist/openapi-compose/cli/openapi-compose.js",
   "dependencies": {
-    "commander": "^12.0.0",
+    "commander": "^12.1.0",
     "fast-glob": "^3.3.2",
     "js-yaml": "^4.1.0",
-    "tslib": "^2.6.2"
+    "tslib": "^2.7.0"
   },
   "description": "A tool for composing a root-level OpenAPI specification by merging multiple OpenAPI specifications together.",
   "devDependencies": {
-    "@types/js-yaml": "^4",
-    "@types/node": "20.X.X",
-    "eslint": "^9.2.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.16.5",
+    "eslint": "^9.9.1",
     "eslint-config-prettier": "^9.1.0",
-    "esmock": "^2.6.5",
-    "globals": "^15.1.0",
-    "prettier": "^3.2.5",
-    "typescript": "^5.4.5",
-    "typescript-eslint": "^7.8.0"
+    "esmock": "^2.6.7",
+    "globals": "^15.9.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.4.0"
   },
   "imports": {
     "#sut/*": "./dist/openapi-compose/*",
@@ -30,7 +30,7 @@
   "license": "MIT",
   "main": "./dist/openapi-compose/api/Compose.js",
   "name": "@altearius/openapi-compose",
-  "packageManager": "yarn@4.2.1",
+  "packageManager": "yarn@4.4.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/altearius/openapi-compose"

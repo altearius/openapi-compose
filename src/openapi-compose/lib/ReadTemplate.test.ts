@@ -5,14 +5,14 @@ import TestLog from '#test/TestLog.js';
 import esmock from 'esmock';
 import yaml from 'js-yaml';
 import assert from 'node:assert/strict';
-import fs from 'node:fs/promises';
 import { beforeEach, describe, it, mock } from 'node:test';
+import type IHasPaths from './IHasPaths.js';
 
 await describe('ReadTemplate', async () => {
 	const mockHasPaths = mock.fn<typeof HasPaths>();
 	const mockHumanPath = mock.fn<typeof HumanPath>();
 	const mockLogWarn = mock.method(TestLog, 'warn');
-	const mockReadFile = mock.method(fs, 'readFile');
+	const mockReadFile = mock.fn<() => Promise<string>>();
 	const mockYamlLoad = mock.method(yaml, 'load');
 
 	beforeEach(() => {
@@ -32,9 +32,12 @@ await describe('ReadTemplate', async () => {
 	await it('should read and load the template file', async () => {
 		// Arrange
 		const template = { paths: { '/users': {} } };
-		mockReadFile.mock.mockImplementationOnce(async () => Promise.resolve(''));
 		mockYamlLoad.mock.mockImplementationOnce(() => template);
-		mockHasPaths.mock.mockImplementationOnce(() => true);
+		mockReadFile.mock.mockImplementationOnce(async () => Promise.resolve(''));
+
+		mockHasPaths.mock.mockImplementationOnce(
+			(x: unknown): x is IHasPaths => true
+		);
 
 		// Act
 		const result = await sut('/path/to/template.yaml', TestLog);
@@ -52,8 +55,11 @@ await describe('ReadTemplate', async () => {
 		const template = { paths: { '/users': {} } };
 		mockReadFile.mock.mockImplementationOnce(async () => Promise.resolve(''));
 		mockYamlLoad.mock.mockImplementationOnce(() => template);
-		mockHasPaths.mock.mockImplementationOnce(() => false);
 		mockLogWarn.mock.mockImplementationOnce(() => {});
+
+		mockHasPaths.mock.mockImplementationOnce(
+			(x: unknown): x is IHasPaths => false
+		);
 
 		// Act
 		const result = await sut('/path/to/template.yaml', TestLog);

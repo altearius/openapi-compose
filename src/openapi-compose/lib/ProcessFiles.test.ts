@@ -6,15 +6,15 @@ import TestLog from '#test/TestLog.js';
 import { strict as esmock } from 'esmock';
 import yaml from 'js-yaml';
 import assert from 'node:assert/strict';
-import type { readFile } from 'node:fs/promises';
 import { beforeEach, describe, it, mock } from 'node:test';
+import type IHasPaths from './IHasPaths.js';
 
 await describe('ProcessFiles', async () => {
 	const mockDebug = mock.method(TestLog, 'debug');
 	const mockHasPaths = mock.fn<typeof HasPaths>();
 	const mockHumanPath = mock.fn<typeof HumanPath>();
 	const mockProcessPaths = mock.fn<typeof ProcessPaths>();
-	const mockReadFile = mock.fn<typeof readFile>();
+	const mockReadFile = mock.fn<() => Promise<string>>();
 	const mockWarn = mock.method(TestLog, 'warn');
 	const mockYamlLoad = mock.method(yaml, 'load');
 
@@ -40,7 +40,8 @@ await describe('ProcessFiles', async () => {
 		mockDebug.mock.mockImplementation(() => {});
 		mockWarn.mock.mockImplementation(() => {});
 		mockReadFile.mock.mockImplementation(async () => Promise.resolve(''));
-		mockHasPaths.mock.mockImplementation(() => true);
+
+		mockHasPaths.mock.mockImplementation((x: unknown): x is IHasPaths => true);
 
 		mockYamlLoad.mock.mockImplementation(() => ({
 			paths: { '/api/path': '/ref/path' }
@@ -80,7 +81,7 @@ await describe('ProcessFiles', async () => {
 		mockDebug.mock.mockImplementation(() => {});
 		mockWarn.mock.mockImplementation(() => {});
 		mockReadFile.mock.mockImplementation(async () => Promise.resolve(''));
-		mockHasPaths.mock.mockImplementation(() => false);
+		mockHasPaths.mock.mockImplementation((x: unknown): x is IHasPaths => false);
 
 		// Act
 		const result = [];

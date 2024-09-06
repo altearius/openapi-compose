@@ -29,7 +29,9 @@ await describe('ProcessTemplate', async () => {
 
 	await it('should not attempt to process an invalid template', async () => {
 		// Arrange
-		mockReadTemplate.mock.mockImplementationOnce(async () => Promise.resolve());
+		mockReadTemplate.mock.mockImplementationOnce(async () =>
+			Promise.resolve(undefined)
+		);
 
 		// Act
 		await sut('template.yaml', 'target.yaml', TestLog);

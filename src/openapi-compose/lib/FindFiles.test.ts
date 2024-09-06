@@ -48,8 +48,10 @@ await describe('FindFiles', async () => {
 		const wildcards = 'wildcards';
 		const template = { paths: { $imports: [wildcards] } };
 		mockReadWildcards.mock.mockImplementationOnce(() => [wildcards]);
-		mockFg.mock.mockImplementationOnce(() => ['result']);
 		mockDebug.mock.mockImplementationOnce(() => {});
+
+		const x = async () => Promise.resolve(['result']);
+		mockFg.mock.mockImplementationOnce(x as unknown as typeof fg);
 
 		// Act
 		const result = await sut(template, templatePath, targetPath, TestLog);

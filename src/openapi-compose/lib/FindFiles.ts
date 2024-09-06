@@ -24,7 +24,8 @@ export default async function FindFiles(
 		ignore: [targetPath]
 	});
 
-	log.debug('Found', files.length, 'files:', files);
+	const noun = files.length === 1 ? 'file' : 'files';
+	log.debug('Found', files.length.toLocaleString(), `${noun}:`, files);
 
 	return files;
 }
